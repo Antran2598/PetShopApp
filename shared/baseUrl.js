@@ -1,0 +1,1 @@
+export const baseUrl = 'https://petshop2598.herokuapp.com/';
