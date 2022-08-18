@@ -66,6 +66,7 @@ const addComments = (comments) => ({
   payload: comments
 });
 
+
 export const postComment = (petId, rating, author, comment) => (dispatch) => {
   var newcmt = { petId: petId, rating: rating, author: author, comment: comment, date: new Date().toISOString() };
   setTimeout(() => {
@@ -108,5 +109,9 @@ export const postFavorite = (petId) => (dispatch) => {
 };
 const addFavorite = (petId) => ({
   type: ActionTypes.ADD_FAVORITE,
+  payload: petId
+});
+export const deleteFavorite = (petId) => ({
+  type: ActionTypes.DELETE_FAVORITE,
   payload: petId
 });

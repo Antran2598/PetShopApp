@@ -5,6 +5,7 @@ import { Card, ListItem, Avatar } from 'react-native-elements';
 // import { LEADERS } from '../shared/leaders';
 import { baseUrl } from '../shared/baseUrl';
 import Loading from './LoadingComponent';
+import * as Animatable from 'react-native-animatable';
 
 class RenderHistory extends Component {
   render() {
@@ -12,8 +13,8 @@ class RenderHistory extends Component {
       <Card>
         <Card.Title>Our History</Card.Title>
         <Card.Divider />
-        <Text style={{ margin: 10 }}>Started in 2010, Ristorante con Fusion quickly established itself as a culinary icon par excellence in Hong Kong. With its unique brand of world fusion cuisine that can be found nowhere else, it enjoys patronage from the A-list clientele in Hong Kong.  Featuring four of the best three-star Michelin chefs in the world, you never know what will arrive on your plate the next time you visit us.</Text>
-        <Text style={{ margin: 10 }}>The restaurant traces its humble beginnings to The Frying Pan, a successful chain started by our CEO, Mr. Peter Pan, that featured for the first time the world's best cuisines in a pan.</Text>
+        <Text style={{ margin: 10 }}>Pets Shop là chuỗi pet shop thú cưng Đồ dùng cho chó – Đồ dùng cho mèo tại TP.HCM với hệ thống nhiều chi nhánh cửa hàng thú cưng chuyên cung cấp đồ dùng, quần áo, thức ăn, sữa tắm, chuồng, vòng cổ xích và các phụ kiện cho Chó cảnh, Mèo cảnh, Cá cảnh. Cùng nhiều bài viết chia sẻ kinh nghiệm chăm sóc Thỏ cảnh, Chuột cảnh, Sóc cảnh, Chim cảnh, Bò sát cảnh hàng đầu tại Việt Nam</Text>
+        <Text style={{ margin: 10 }}>Địa chỉ nhận tắm spa, chăm sóc, cắt tỉa lông và trông giữ thú cưng chuyên nghiệp. Với chất lượng dịch vụ tốt nhất luôn được khách hàng tin tưởng sẽ là điểm đến lý tưởng và tuyệt vời dành cho vật nuôi.</Text>
       </Card>
     );
   }
@@ -66,19 +67,19 @@ class RenderLeadership extends Component {
     } else {
       return (
         <Card>
-        <Card.Title>Corporate Leadership</Card.Title>
-        <Card.Divider />
-        <FlatList data={this.props.leaders}
-          renderItem={({ item, index }) => this.renderLeaderItem(item, index)}
-          keyExtractor={item => item.id.toString()} />
-      </Card>
+          <Card.Title>Corporate Leadership</Card.Title>
+          <Card.Divider />
+          <FlatList data={this.props.leaders}
+            renderItem={({ item, index }) => this.renderLeaderItem(item, index)}
+            keyExtractor={item => item.id.toString()} />
+        </Card>
       );
     }
   }
   renderLeaderItem(item, index) {
     return (
       <ListItem key={index}>
-         <Avatar rounded source={{ uri: baseUrl + item.image }} />
+        <Avatar rounded source={{ uri: baseUrl + item.image }} />
         <ListItem.Content>
           <ListItem.Title style={{ fontWeight: 'bold' }}>{item.name}</ListItem.Title>
           <ListItem.Subtitle>{item.description}</ListItem.Subtitle>
@@ -104,11 +105,15 @@ class About extends Component {
   render() {
     return (
       <ScrollView>
-        <RenderHistory />
-        <RenderLeadership
-      leaders={this.props.leaders.leaders}
-      isLoading={this.props.leaders.isLoading}
-      errMess={this.props.leaders.errMess} />
+        <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
+          <RenderHistory />
+        </Animatable.View>
+        <Animatable.View animation="fadeInUp" duration={2000} delay={1000}>
+          <RenderLeadership
+            leaders={this.props.leaders.leaders}
+            isLoading={this.props.leaders.isLoading}
+            errMess={this.props.leaders.errMess} />
+        </Animatable.View>
       </ScrollView>
     );
   }

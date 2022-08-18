@@ -72,6 +72,27 @@ function AboutNavigatorScreen() {
   );
 }
 
+import Favorites from './FavoriteComponent';
+function FavoritesNavigatorScreen() {
+  const FavoritesNavigator = createStackNavigator();
+  return (
+    <FavoritesNavigator.Navigator initialRouteName='Favorites'
+      screenOptions={{
+        headerStyle: { backgroundColor: '#7cc' },
+        headerTintColor: '#fff',
+        headerTitleStyle: { color: '#fff' }
+      }}>
+      <FavoritesNavigator.Screen name='Favorites' component={Favorites}
+        options={({ navigation }) => ({
+          headerTitle: 'My Favorites',
+          headerLeft: () => (<Icon name='menu' size={36} color='#fff' onPress={() => navigation.toggleDrawer()} />)
+        })} />
+      <FavoritesNavigator.Screen name='Petdetail' component={Petdetail}
+        options={{ headerTitle: 'Pet Detail' }} />
+    </FavoritesNavigator.Navigator>
+  );
+}
+
 // const MenuNavigator = createStackNavigator();
 // function MenuNavigatorScreen() {
 //   return (
@@ -175,6 +196,8 @@ function ProfileNavigatorScreen() {
       }}>
       <ProfileNavigator.Screen name='Profile' component={Profile} options={{ headerTitle: 'Trang Cá Nhân' }} />
       <ProfileNavigator.Screen name='About' component={About} options={{ headerTitle: 'Về Chúng Tôi' }} />
+      <ProfileNavigator.Screen name='Contact' component={Contact} options={{ headerTitle: 'Liên Hệ' }} />
+      <ProfileNavigator.Screen name='Favorites' component={Favorites} options={{ headerTitle: 'Thú Cưng Yêu Thích' }} />
       {/* <MenuNavigator.Screen name='Cart' component={Cart} options={{ headerTitle: 'Giỏ Hàng' }} /> */}
       {/* <ProfileNavigator.Screen name='Login' component={Login} options={{ headerTitle: 'Đăng Nhập' }} />
       <ProfileNavigator.Screen name='Register' component={Register} options={{ headerTitle: 'Đăng Ký' }} /> */}
@@ -223,10 +246,10 @@ function MainNavigatorScreen() {
         headerShown: false, tabBarLabel: 'Booking',
         tabBarIcon: ({ tintColor }) => (<Ionicons name="ios-book" color={tintColor} size={25} />)
       }} />
-      <MainNavigator.Screen name='Giới Thiệu' component={ContactNavigatorScreen} options={{
+      {/* <MainNavigator.Screen name='Giới Thiệu' component={ContactNavigatorScreen} options={{
         headerShown: false, tabBarLabel: 'Giới Thiệu',
         tabBarIcon: ({ tintColor }) => (<Ionicons name="ios-call" color={tintColor} size={25} />)
-      }} />
+      }} /> */}
       <MainNavigator.Screen name='Trang Cá Nhân' component={ProfileNavigatorScreen} options={{
         headerShown: false, tabBarLabel: 'Trang Cá Nhân',
         tabBarIcon: ({ tintColor }) => (<Ionicons name="ios-person" color={tintColor} size={25} />)

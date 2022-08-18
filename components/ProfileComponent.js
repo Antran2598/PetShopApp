@@ -74,7 +74,7 @@ class Profile extends Component {
 
         <View style={styles.itemContainer} icon="heart-outline">
         <MaterialCommunityIcons name="heart-outline" size={26} color="#1e1e1e" />
-        <Text style={[styles.itemText, {marginLeft: 20}]} onPress={()=>navigate('Favorite')}>Sản Phẩm Yêu Thích</Text>
+        <Text style={[styles.itemText, {marginLeft: 20}]} onPress={()=>navigate('Favorites')}>Thú Cưng Yêu Thích</Text>
         <FontAwesome name="angle-right" size={26} color="#1e1e1e"  />
         </View>
         
@@ -93,6 +93,11 @@ class Profile extends Component {
       <ProfileItem name="Cài đặt" />*/}
         
         <View style={styles.divider} />
+        <View style={styles.itemContainer} icon="phone">
+        <MaterialCommunityIcons name="phone" size={26} color="#1e1e1e" />
+        <Text style={[styles.itemText, {marginLeft: 20}]} onPress={()=>navigate('Contact')}>Liên hệ</Text>
+        <FontAwesome name="angle-right" size={26} color="#1e1e1e"  />
+        </View>
         <View style={styles.itemContainer} icon="store">
         <MaterialCommunityIcons name="store" size={26} color="#1e1e1e" />
         <Text style={[styles.itemText, {marginLeft: 20}]} onPress={()=>navigate('About')}>Về Chúng Tôi</Text>

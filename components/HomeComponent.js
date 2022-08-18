@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, ScrollView, Text } from "react-native";
 import { Card, Image } from "react-native-elements";
+import * as Animatable from 'react-native-animatable';
 
 /* Shared Folder */
 // import { pets } from "../shared/pets";
@@ -22,7 +23,7 @@ class RenderItem extends Component {
       if (item != null) {
         return (
           <Card>
-             <Image source={{ uri: baseUrl + item.image }} 
+            <Image source={{ uri: baseUrl + item.image }}
               style={{
                 width: "100%",
                 height: 100,
@@ -66,15 +67,21 @@ class Home extends Component {
     const leaders = this.props.leaders.leaders.filter((leader) => leader.featured === true)[0];
     return (
       <ScrollView>
-  <RenderItem item={pet}
-      isLoading={this.props.pets.isLoading}
-      errMess={this.props.pets.errMess} />
-    <RenderItem item={promotions}
-      isLoading={this.props.promotions.isLoading}
-      errMess={this.props.promotions.errMess} />
-    <RenderItem item={leaders}
-      isLoading={this.props.leaders.isLoading}
-      errMess={this.props.leaders.errMess} />
+        <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
+          <RenderItem item={pet}
+            isLoading={this.props.pets.isLoading}
+            errMess={this.props.pets.errMess} />
+        </Animatable.View>
+        <Animatable.View animation="fadeInRight" duration={2000} delay={1000}>
+          <RenderItem item={promotions}
+            isLoading={this.props.promotions.isLoading}
+            errMess={this.props.promotions.errMess} />
+        </Animatable.View>
+        <Animatable.View animation="fadeInUp" duration={2000} delay={1000}>
+          <RenderItem item={leaders}
+            isLoading={this.props.leaders.isLoading}
+            errMess={this.props.leaders.errMess} />
+        </Animatable.View>
       </ScrollView>
     );
   }

@@ -18,6 +18,7 @@ import { View, Text, FlatList, Modal, Button } from 'react-native';
 import { ScrollView } from 'react-native-virtualized-view';
 import { Card, Image, Icon, Rating, Input } from 'react-native-elements';
 import { baseUrl } from '../shared/baseUrl';
+import * as Animatable from 'react-native-animatable';
 
 class Renderpet extends Component {
   render() {
@@ -80,12 +81,7 @@ class petdetail extends Component {
   render() {
     const petId = parseInt(this.props.route.params.petId);
     return (
-      <ScrollView>
-        <Renderpet pet={this.props.pets.pets[petId]}
-          favorite={this.props.favorites.some(el => el === petId)}
-          onPressFavorite={() => this.markFavorite(petId)}
-          onPressComment={() => this.setState({ showModal: true })} />
-        <RenderComments comments={this.props.comments.comments.filter((comment) => comment.petId === petId)} />
+      <View>
         <Modal visible={this.state.showModal}
           onRequestClose={() => this.setState({ showModal: false })}>
           <View style={{ justifyContent: 'center', margin: 20 }}>
@@ -105,7 +101,18 @@ class petdetail extends Component {
             </View>
           </View>
         </Modal>
-      </ScrollView>
+        <ScrollView>
+          <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
+            <Renderpet pet={this.props.pets.pets[petId]}
+              favorite={this.props.favorites.some(el => el === petId)}
+              onPressFavorite={() => this.markFavorite(petId)}
+              onPressComment={() => this.setState({ showModal: true })} />
+          </Animatable.View>
+          <Animatable.View animation="fadeInUp" duration={2000} delay={1000}>
+            <RenderComments comments={this.props.comments.comments.filter((comment) => comment.petId === petId)} />
+          </Animatable.View>
+        </ScrollView>
+      </View>
     );
   }
 
