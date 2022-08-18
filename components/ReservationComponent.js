@@ -12,6 +12,7 @@ class Reservation extends Component {
       pets: 1,
       takeShower: false,
       haircut:false,
+      heathcheck:false,
       date: new Date(),
       showDatePicker: false,
       showModal: false
@@ -21,7 +22,7 @@ class Reservation extends Component {
     return (
       <ScrollView>
         <View style={styles.formRow}>
-          <Text style={styles.formLabel}>Number of Pets</Text>
+          <Text style={styles.formLabel}>Số lượng thú cưng</Text>
           <Picker style={styles.formItem} selectedValue={this.state.pets} onValueChange={(value) => this.setState({ pets: value })}>
             <Picker.Item label='1' value='1' />
             <Picker.Item label='2' value='2' />
@@ -32,15 +33,19 @@ class Reservation extends Component {
           </Picker>
         </View>
         <View style={styles.formRow}>
-          <Text style={styles.formLabel}>Take Shower</Text>
+          <Text style={styles.formLabel}>Tắm</Text>
           <Switch style={styles.formItem} value={this.state.takeShower} onValueChange={(value) => this.setState({ takeShower: value })} />
         </View>
         <View style={styles.formRow}>
-          <Text style={styles.formLabel}>Haircut</Text>
+          <Text style={styles.formLabel}>Cắt tỉa lông</Text>
           <Switch style={styles.formItem} value={this.state.haircut} onValueChange={(value) => this.setState({ haircut: value })} />
         </View>
         <View style={styles.formRow}>
-          <Text style={styles.formLabel}>Date and Time</Text>
+          <Text style={styles.formLabel}>Thăm khám</Text>
+          <Switch style={styles.formItem} value={this.state.heathcheck} onValueChange={(value) => this.setState({ heathcheck: value })} />
+        </View>
+        <View style={styles.formRow}>
+          <Text style={styles.formLabel}>Thời Gian</Text>
           <Icon name='schedule' size={36} onPress={() => this.setState({ showDatePicker: true })} />
           <Text style={{ marginLeft: 10 }}>{format(this.state.date, 'dd/MM/yyyy - HH:mm')}</Text>
           <DateTimePickerModal mode='datetime' isVisible={this.state.showDatePicker}
@@ -48,11 +53,11 @@ class Reservation extends Component {
             onCancel={() => this.setState({ showDatePicker: false })} />
         </View>
         <View style={styles.formRow}>
-          <Button title='Reserve' color='#7cc' onPress={() => this.handleReservation()} />
+          <Button title='Đặt Lịch' color='#0000CC' onPress={() => this.handleReservation()} />
         </View>
         <Modal animationType={'slide'} visible={this.state.showModal}
           onRequestClose={() => this.setState({ showModal: false })}>
-          <ModalContent pets={this.state.pets} takeShower={this.state.takeShower} haircut={this.state.haircut} date={this.state.date}
+          <ModalContent pets={this.state.pets} takeShower={this.state.takeShower} haircut={this.state.haircut} heathcheck={this.state.heathcheck} date={this.state.date}
             onPressClose={() => this.setState({ showModal: false })} />
         </Modal>
       </ScrollView>
@@ -72,6 +77,7 @@ class ModalContent extends Component {
         <Text style={styles.modalText}>Number of Pets: {this.props.pets}</Text>
         <Text style={styles.modalText}>Take Shower?: {this.props.takeShower ? 'Yes' : 'No'}</Text>
         <Text style={styles.modalText}>Haircut?: {this.props.haircut ? 'Yes' : 'No'}</Text>
+        <Text style={styles.modalText}>HeathCheck?: {this.props.heathcheck ? 'Yes' : 'No'}</Text>
         <Text style={styles.modalText}>Date and Time: {format(this.props.date, 'dd/MM/yyyy - HH:mm')}</Text>
         <Button title='Close' color='#7cc' onPress={() => this.props.onPressClose()} />
       </View>
