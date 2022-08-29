@@ -6,7 +6,10 @@ import { ConfigureStore } from './redux/ConfigureStore';
 // redux-persist
 import { PersistGate } from 'redux-persist/es/integration/react';
 const { persistor, store } = ConfigureStore();
-
+// firebase
+import { initializeApp } from 'firebase/app';
+const firebaseConfig = { databaseURL: 'https://petshop-reactnative-default-rtdb.asia-southeast1.firebasedatabase.app/' };
+initializeApp(firebaseConfig);
 class App extends Component {
   render() {
     return (
