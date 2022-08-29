@@ -12,6 +12,11 @@ import { fetchLeaders, fetchPets, fetchComments, fetchPromos } from '../redux/Ac
 import { baseUrl } from '../shared/baseUrl';
 import Home from './HomeComponent';
 import Profile from './ProfileComponent';
+import Login from './LoginComponent';
+import Register from './RegisterComponent';
+import Contact from './ContactComponent';
+import Favorites from './FavoriteComponent';
+import About from './AboutComponent';
 const mapDispatchToProps = (dispatch) => ({
   fetchLeaders: () => dispatch(fetchLeaders()),
   fetchPets: () => dispatch(fetchPets()),
@@ -52,62 +57,6 @@ function ReservationNavigatorScreen() {
     </ReservationNavigator.Navigator>
   );
 }
-import About from './AboutComponent';
-function AboutNavigatorScreen() {
-  const AboutNavigator = createStackNavigator();
-  return (
-    <AboutNavigator.Navigator
-      initialRouteName='About'
-      screenOptions={{
-        headerStyle: { backgroundColor: '#111111' },
-        headerTintColor: '#fff',
-        headerTitleStyle: { color: '#fff' }
-      }}>
-      <AboutNavigator.Screen name='About' component={About}
-        options={({ navigation }) => ({
-          headerTitle: 'About',
-          headerLeft: () => (<Icon name='menu' size={36} color='#fff' onPress={() => navigation.toggleDrawer()} />)
-        })} />
-    </AboutNavigator.Navigator>
-  );
-}
-
-import Favorites from './FavoriteComponent';
-function FavoritesNavigatorScreen() {
-  const FavoritesNavigator = createStackNavigator();
-  return (
-    <FavoritesNavigator.Navigator initialRouteName='Favorites'
-      screenOptions={{
-        headerStyle: { backgroundColor: '#7cc' },
-        headerTintColor: '#fff',
-        headerTitleStyle: { color: '#fff' }
-      }}>
-      <FavoritesNavigator.Screen name='Favorites' component={Favorites}
-        options={({ navigation }) => ({
-          headerTitle: 'My Favorites',
-          headerLeft: () => (<Icon name='menu' size={36} color='#fff' onPress={() => navigation.toggleDrawer()} />)
-        })} />
-      <FavoritesNavigator.Screen name='Petdetail' component={Petdetail}
-        options={{ headerTitle: 'Pet Detail' }} />
-    </FavoritesNavigator.Navigator>
-  );
-}
-
-// const MenuNavigator = createStackNavigator();
-// function MenuNavigatorScreen() {
-//   return (
-//     <MenuNavigator.Navigator
-//       initialRouteName='Menu'
-//       screenOptions={{
-//         headerStyle: { backgroundColor: '#111111' },
-//         headerTintColor: '#fff',
-//         headerTitleStyle: { color: '#fff' }
-//       }}>
-//       <MenuNavigator.Screen name='Pets' component={Pets} />
-//       <MenuNavigator.Screen name='Productdetail' component={Petdetail} options={{ headerTitle: 'Pet Detail' }} />
-//     </MenuNavigator.Navigator>
-//   );
-// }
 
 import Pets from './PetsComponent';
 import Petdetail from './PetdetailComponent';
@@ -134,24 +83,6 @@ function PetsNavigatorScreen() {
 }
 
 
-import Contact from './ContactComponent';
-function ContactNavigatorScreen() {
-  const ContactNavigator = createStackNavigator();
-  return (
-    <ContactNavigator.Navigator
-      initialRouteName='Contact'
-      screenOptions={{
-        headerStyle: { backgroundColor: '#111111' },
-        headerTintColor: '#fff',
-        headerTitleStyle: { color: '#fff' }
-      }}>
-      <ContactNavigator.Screen name='Contact' component={Contact}
-        options={({ navigation }) => ({
-          headerTitle: 'Contact'
-        })} />
-    </ContactNavigator.Navigator>
-  );
-}
 
 // function MainNavigatorScreen() {
 //   const MainNavigator = createDrawerNavigator();
@@ -198,9 +129,8 @@ function ProfileNavigatorScreen() {
       <ProfileNavigator.Screen name='About' component={About} options={{ headerTitle: 'Về Chúng Tôi' }} />
       <ProfileNavigator.Screen name='Contact' component={Contact} options={{ headerTitle: 'Liên Hệ' }} />
       <ProfileNavigator.Screen name='Favorites' component={Favorites} options={{ headerTitle: 'Thú Cưng Yêu Thích' }} />
-      {/* <MenuNavigator.Screen name='Cart' component={Cart} options={{ headerTitle: 'Giỏ Hàng' }} /> */}
-      {/* <ProfileNavigator.Screen name='Login' component={Login} options={{ headerTitle: 'Đăng Nhập' }} />
-      <ProfileNavigator.Screen name='Register' component={Register} options={{ headerTitle: 'Đăng Ký' }} /> */}
+      <ProfileNavigator.Screen name='Login' component={Login} options={{ headerTitle: 'Đăng Nhập' }} />
+      <ProfileNavigator.Screen name='Register' component={Register} options={{ headerTitle: 'Đăng Ký' }} />
     </ProfileNavigator.Navigator>
   );
 }
